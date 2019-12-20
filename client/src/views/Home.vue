@@ -6,8 +6,17 @@
           <img alt="Vue logo" src="../assets/logo.png" />
           Bugger
         </h1>
-        {{ bugs }}
       </div>
+      <div class="col-3">
+        <h1>Title</h1>
+        <h1>Removed By</h1>
+        <h1>Status</h1>
+        <h1>Date Last Modified</h1>
+      </div>
+      <div class="col-4" v-for="bug in bugs" :key="bug.id">
+        <bug-component />
+      </div>
+      {{ bugs }}
     </div>
   </div>
 </template>
@@ -18,8 +27,16 @@ import HelloWorld from "@/components/HelloWorld.vue";
 
 export default {
   name: "home",
-  components: {
-    HelloWorld
+  mounted() {},
+  data() {
+    return {
+      newBug: {
+        closed: "",
+        description: "",
+        title: "",
+        reportedBy: ""
+      }
+    };
   }
 };
 </script>

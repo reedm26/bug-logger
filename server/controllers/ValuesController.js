@@ -1,17 +1,15 @@
 import express from "express";
-import valueService from "../services/ValueService";
+import bugsService from "../services/ValueService";
 
-export default class ValueController {
+export default class BugsController {
   constructor() {
-    this.router = express
-      .Router()
-      //NOTE  each route gets registered as a .get, .post, .put, or .delete, the first parameter of each method is a string to be concatinated onto the base url registered with the route in main. The second parameter is the method that will be run when this route is hit.
-      .get("", this.getAll);
+    this.router = express.Router().get("bugs", this.getAll);
+    //NOTE  each route gets registered as a .get, .post, .put, or .delete, the first parameter of each method is a string to be concatinated onto the base url registered with the route in main. The second parameter is the method that will be run when this route is hit.
   }
 
   async getAll(req, res, next) {
     try {
-      let data = await valueService.getAll();
+      let data = await bugsService.getAll();
       return res.send(data);
     } catch (error) {
       next(error);
