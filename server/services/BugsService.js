@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import Bug from "../models/Bug.js";
 
-const _repository = mongoose.model("Value", Bug);
+const _repository = mongoose.model("Bug", Bug);
 
 class BugsService {
   async getAll() {

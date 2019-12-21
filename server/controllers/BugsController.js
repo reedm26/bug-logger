@@ -1,5 +1,5 @@
 import express from "express";
-import BugsService from "../services/BugsService";
+import BugsService from "../services/BugsService.js";
 
 export default class BugsController {
   constructor() {
