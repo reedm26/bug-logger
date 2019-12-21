@@ -1,5 +1,5 @@
 import express from "express";
-import bugsService from "../services/ValueService";
+import BugsService from "../services/BugsService";
 
 export default class BugsController {
   constructor() {
@@ -9,7 +9,7 @@ export default class BugsController {
 
   async getAll(req, res, next) {
     try {
-      let data = await bugsService.getAll();
+      let data = await BugsService.getAll();
       return res.send(data);
     } catch (error) {
       next(error);
