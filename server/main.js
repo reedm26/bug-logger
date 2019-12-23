@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import bp from "body-parser";
 import DbContext from "./db/dbConfig";
+import BugsController from "./controllers/BugsController.js";
 
 const port = process.env.PORT || 3000;
 
@@ -35,10 +36,9 @@ server.use(bp.json());
 //NOTE next we want to register all our routes(doorways that can be accessed in our app)
 
 //NOTE we have to import access to our controllers
-import BugsController from "./controllers/BugsController.js";
 
 //NOTE remember the forward slash at the start of your path!
-server.use("/api/values", new BugsController().router);
+server.use("/api/bugs", new BugsController().router);
 
 //NOTE Everything below this line always stays the same
 
