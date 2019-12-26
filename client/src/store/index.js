@@ -12,7 +12,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    bugs: []
+    bugs: [],
+    notes: []
   },
   mutations: {
     setAllBugs(state, data) {

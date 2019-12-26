@@ -1,5 +1,5 @@
 import express from "express";
-import NotesService from "../services/NotesService.js";
+import NotesService from "../services/notesService.js";
 
 export default class NotesController {
   constructor() {

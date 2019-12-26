@@ -23,11 +23,13 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import Notes from "@/components/HelloWorld.vue";
 
 export default {
   name: "home",
-  mounted() {},
+  mounted() {
+    this.$state.dispatch("getAll");
+  },
   data() {
     return {
       newBug: {
