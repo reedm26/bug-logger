@@ -1,5 +1,6 @@
 import express from "express";
 import BugsService from "../services/BugsService.js";
+import NotesService from "../services/NotesService";
 
 export default class BugsController {
   constructor() {
@@ -33,7 +34,7 @@ export default class BugsController {
   }
   async getBugsNotes(req, res, next) {
     try {
-      let data = await BugsService.getBugsNotes();
+      let data = await NotesService.getBugsNotes();
       return res.send(data);
     } catch (error) {
       next(error);
