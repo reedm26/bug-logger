@@ -5,6 +5,9 @@ import ApiError from "../utils/ApiError";
 const _repository = mongoose.model("Bug", Bug);
 
 class BugsService {
+  async getAllBugs() {
+    return await _repository.find({});
+  }
   async edit(id, update) {
     let data = await _repository.findByIdAndUpdate(id, update);
     if (!data) {
@@ -33,9 +36,6 @@ class BugsService {
   async newBug(rawData) {
     let data = await _repository.create(rawData);
     return data;
-  }
-  async getAllBugs() {
-    return await _repository.find({});
   }
 }
 

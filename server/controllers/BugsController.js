@@ -34,7 +34,7 @@ export default class BugsController {
   }
   async getBugsNotes(req, res, next) {
     try {
-      let data = await NotesService.getBugsNotes();
+      let data = await NotesService.getBugsNotes(req.params.BugId);
       return res.send(data);
     } catch (error) {
       next(error);
@@ -42,7 +42,7 @@ export default class BugsController {
   }
   async getBugsById(req, res, next) {
     try {
-      let data = await BugsService.getBugsById();
+      let data = await BugsService.getBugsById(req.params.id);
       return res.send(data);
     } catch (error) {
       next(error);
