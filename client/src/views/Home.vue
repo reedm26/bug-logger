@@ -7,28 +7,30 @@
           Bugger
         </h1>
       </div>
-      <div class="col-3">
-        <h1>Title</h1>
-        <h1>Removed By</h1>
-        <h1>Status</h1>
-        <h1>Date Last Modified</h1>
+      <div class="col-12">
+        <ul class="list-group list-group-horizontal-lg">
+          <li class="list-group-item">Title</li>
+          <li class="list-group-item">Remove</li>
+          <li class="list-group-item">Status</li>
+          <li class="list-group-item">Date Last Modified</li>
+        </ul>
       </div>
       <div class="col-4" v-for="bug in bugs" :key="bug.id">
         <bug-component />
+        {{ bugs }}
       </div>
-      {{ bugs }}
     </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Notes from "@/components/HelloWorld.vue";
+import BugComponent from "@/components/BugComponents";
 
 export default {
   name: "home",
   mounted() {
-    this.$state.dispatch("getAll");
+    this.$state.dispatch("getAllBugs");
   },
   data() {
     return {
@@ -44,7 +46,7 @@ export default {
 </script>
 <style>
 img scoped {
-  width: 10px;
+  width: 9px;
   height: 10px;
 }
 </style>
