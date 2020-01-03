@@ -41,6 +41,9 @@ export default {
         reportedBy: ""
       }
     };
+  },
+  components: {
+    BugComponent
   }
 };
 </script>
