@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+// @ts-ignore
 import Home from "../views/Home.vue";
-import Notes from "../views/A";
 
 Vue.use(VueRouter);
 
@@ -10,11 +10,6 @@ const routes = [
     path: "/",
     name: "home",
     component: Home
-  },
-  {
-    path: "/notes/:id",
-    name: "notes",
-    component: Notes
   }
 ];
 // route level code-splitting

@@ -8,7 +8,7 @@ export default class BugsController {
       .Router()
       .get("", this.getAllBugs)
       .get("/:id", this.getBugsById)
-      .get("/:bugId/notes", this.getBugsNotes)
+      .get("/:bugId/notes", this.getNotesByBugId)
       .post("", this.newBug)
       .put("/:id", this.edit)
       .delete("/:id", this.deleteBug);
@@ -32,9 +32,9 @@ export default class BugsController {
       next(error);
     }
   }
-  async getBugsNotes(req, res, next) {
+  async getNotesByBugId(req, res, next) {
     try {
-      let data = await NotesService.getBugsNotes(req.params.BugId);
+      let data = await NotesService.getNotesByBugId(req.params.BugId);
       return res.send(data);
     } catch (error) {
       next(error);

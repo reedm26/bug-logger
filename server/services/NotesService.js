@@ -6,16 +6,18 @@ const _repository = mongoose.model("Note", Note);
 
 class NotesService {
   async delete(id) {
-    let data = await _repository.findOneAndDelete(id);
+    let data = await _repository.findByIdAndDelete(id);
     if (!data) {
       throw new ApiError("Invalid Id", 400);
     }
     return data;
   }
-  async getNotesById(id) {
-    let data = await _repository.findById(id);
+  async editNotesByBugId(BugId, update) {
+    let data = await _repository.findByIdAndUpdate(BugId, update, {
+      new: true
+    });
     if (!data) {
-      throw new ApiError("Invalid Id");
+      throw new ApiError("Invalid Id", 404);
     }
     return data;
   }
@@ -23,8 +25,14 @@ class NotesService {
     let data = await _repository.create(rawData);
     return data;
   }
-  async getBugsNotes(bugId) {
-    return await _repository.find({});
+  async getNotesByBugId(BugId) {
+    let data = await _repository.find({ bug: BugId });
+    return data;
+
+    if (!data) {
+      throw new ApiError("Invalid Id", 404);
+    }
+    return data;
   }
 }
 const noteService = new NotesService();
