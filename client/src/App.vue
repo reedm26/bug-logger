@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">V-bugger</router-link>|
+    <div id="home">
+      <router-link to="/">Home</router-link>
     </div>
     <router-view />
   </div>
