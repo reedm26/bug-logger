@@ -25,7 +25,7 @@
 
 <script>
 // @ is an alias to /src
-import BugComponent from "@/components/BugsComponents";
+import BugsComponent from "@/components/BugsComponents";
 
 export default {
   name: "home",
