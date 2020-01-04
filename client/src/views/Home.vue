@@ -5,19 +5,48 @@
         <h1>
           <img alt="Vue logo" src="../assets/logo.png" />
           Bugger
-          <button class="btn-sm btn-danger">Report</button>
+          <button class="btn-sm btn-danger" @click="show">Report</button>
+          <modal name="bugPopUp">
+            <form action="">
+              <input
+                type="text"
+                placeholder="title..."
+                v-model="newBug.title"
+                name="title"
+              />
+              <input
+                type="text"
+                placeholder="description..."
+                v-model="newBug.description"
+                name="description"
+              />
+              <input
+                type="text"
+                placeholder="reported by..."
+                v-model="newBug.reportedBy"
+                name="reportedBy"
+              />
+            </form>
+            <button @click="show">Add</button>
+          </modal>
         </h1>
       </div>
       <div class="col-12">
-        <div class="row outline">
+        <div class="row">
           <div class="col-3">Title</div>
           <div class="col-3">Remove</div>
           <div class="col-3">Status</div>
           <div class="col-3">Last Modified</div>
         </div>
       </div>
-      <div class="row" v-for="bug in bugs" :key="bug.id">
-        <BugComponent :bugData="bug" />
+      <div class="row">
+        <ul>
+          <li v-for="bug in bugs" :key="bug.id">
+            <router-link :to="{ name: 'bugSpecs', params: { id: bug._id } }">
+              <BugComponent :bugData="bug"
+            /></router-link>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -30,20 +59,39 @@ import BugComponent from "@/components/BugComponents";
 export default {
   name: "home",
   mounted() {
-    this.$state.dispatch("getAllBugs");
+    this.$store.dispatch("getBugs");
   },
   data() {
     return {
       newBug: {
-        closed: "",
+        closed: false,
         description: "",
         title: "",
-        reportedBy: ""
+        reportedBy: "",
+        id: this.$route.params.id
       }
     };
   },
+  methods: {
+    show() {
+      this.$modal.show("bugPopUp");
+    },
+    hide() {
+      this.$modal.hide("bugPopUp");
+    }
+  },
   components: {
     BugComponent
+  },
+  computed: {
+    bugs() {
+      console.log("bugs in store", this.$store.state.bugs);
+      return this.$store.state.bugs;
+    },
+    activeBug() {
+      console.log("activeBug", this.$store.state.activeBug);
+      return this.$store.state.activeBug;
+    }
   }
 };
 </script>

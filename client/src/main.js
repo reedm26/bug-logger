@@ -1,11 +1,13 @@
 import Vue from "vue";
+// @ts-ignore
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-// import Vmodal from "vue-js-modal" NOTE  npm install vue-js-modal --save
+import VModal from "vue-js-modal";
 
 // Vue.config.productionTip = false;
-// Vue.use.(VModal)
+Vue.use(VModal);
+
 new Vue({
   router,
   store,
