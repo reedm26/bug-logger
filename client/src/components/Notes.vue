@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-12 border">
-      <h1>{{ notes }}</h1>
+      <h1 class="">{{ notes }}</h1>
       <p>
         <a>vue-cli documentation</a>
       </p>
@@ -17,7 +17,7 @@ export default {
       return this.$store.state.bugNotes;
     }
   },
-  props: ["noteData"]
+  props: ["bugNotes"]
 };
 </script>
 
@@ -38,7 +38,7 @@ a {
   color: #42b983;
 }
 border {
-  border: 2px;
+  border: 3px;
   text-align: center;
 }
 </style>

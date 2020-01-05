@@ -2,7 +2,7 @@
   <div class="home container">
     <div class="row">
       <div class="col-12">
-        <h1>
+        <h3>
           <img alt="Vue logo" src="../assets/logo.png" />
           Bugger
           <button class="btn-sm btn-danger" @click="show">Report</button>
@@ -29,10 +29,10 @@
               <button>Add</button>
             </form>
           </modal>
-        </h1>
+        </h3>
       </div>
       <div class="col-12">
-        <div class="row">
+        <div class="row outline bg-light">
           <div class="col-3">Title</div>
           <div class="col-3">Remove</div>
           <div class="col-3">Status</div>
@@ -114,11 +114,11 @@ export default {
 </script>
 <style>
 img scoped {
-  width: 9px;
-  height: 10px;
+  width: 5px;
+  height: 6px;
+  text-align: center;
 }
 .outline {
-  border-bottom: 3rem;
-  border-color: black;
+  border: 3rem;
 }
 </style>

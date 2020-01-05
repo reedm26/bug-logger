@@ -1,14 +1,39 @@
 <template>
-  <div class="col-12">
+  <div class="col-12 noteborder">
     <h1>Hello from BugSpecs</h1>
-    <h5>
-      Title:
-      {{ bug.title }}
-    </h5>
-    <h3></h3>
-    <p>{{ bug.description }}</p>
+    <div class="row">
+      <div class="col-4">
+        Title:
+        <h3>{{ bug.title }}</h3>
+      </div>
+      <div class="col-8">
+        <p>
+          Reported By:
+        </p>
+        <h6>{{ bug.reportedBy }}</h6>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <h5>
+          Description:
+        </h5>
+        <p class="border bg-light">{{ bug.description }}</p>
+        <div class="button">
+          <button class="bg-danger">Close</button>
+        </div>
+      </div>
+    </div>
 
-    <div class="row" id="noteborder">
+    <!-- <h5>
+        Title:
+        {{ bug.title }}
+      </h5>
+      <h3></h3>
+      <p>{{ bug.description }}</p>
+      <p>{{ bug.reportedBy }}</p> -->
+
+    <div class="row">
       <div class="col-12">Notes:</div>
       <div class="col-4"><h5>Name</h5></div>
       <div class="col-4"><h5>Description</h5></div>
@@ -61,9 +86,15 @@ export default {
 };
 </script>
 
-<style>
-#noteborder {
+<style scoped>
+.noteborder {
   border: 2px;
   text-align: center;
+}
+.box {
+  text-align: center;
+}
+.button {
+  text-align: end;
 }
 </style>
