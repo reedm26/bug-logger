@@ -14,7 +14,7 @@ export default new Vuex.Store({
   state: {
     bugs: [],
     activeBug: {},
-    notes: []
+    bugNotes: []
   },
   mutations: {
     setAllBugs(state, data) {
@@ -27,7 +27,10 @@ export default new Vuex.Store({
       state.bugs.push(bug);
     },
     displayNotes(state, data) {
-      state.notes = data;
+      state.bugNotes = data;
+    },
+    makeNotes(state, note) {
+      state.bugNotes.push(note);
     }
   },
   actions: {
@@ -37,15 +40,21 @@ export default new Vuex.Store({
     },
     async getBugById({ commit, dispatch }, id) {
       let res = await _sandBox.get("bugs/" + id);
-      commit("setAvctiveBug", res.data);
+      commit("setActiveBug", res.data);
     },
     async createBug({ commit, dispatch }, bug) {
       let res = await _sandBox.post("bugs", bug);
-      commit("addBug");
+      commit("addBug", res.data);
+      commit("setActiveBug", res.data);
+      console.log(res.data);
     },
     async getNotes({ commit, dispatch }, id) {
       let res = await _sandBox.post("bugs/" + id + "notes");
       commit("displayNotes", res.data);
+    },
+    async makeNote({ commit, dispatch }, note) {
+      let res = await _sandBox.post("notes", note);
+      commit("makeNotes", res.data);
     }
   },
   modules: {}

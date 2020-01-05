@@ -7,7 +7,7 @@
           Bugger
           <button class="btn-sm btn-danger" @click="show">Report</button>
           <modal name="bugPopUp">
-            <form action="">
+            <form @submit.prevent="createBug">
               <input
                 type="text"
                 placeholder="title..."
@@ -26,8 +26,8 @@
                 v-model="newBug.reportedBy"
                 name="reportedBy"
               />
+              <button>Add</button>
             </form>
-            <button @click="show">Add</button>
           </modal>
         </h1>
       </div>
@@ -43,8 +43,8 @@
         <ul>
           <li v-for="bug in bugs" :key="bug.id">
             <router-link :to="{ name: 'bugSpecs', params: { id: bug._id } }">
-              <BugComponent :bugData="bug"
-            /></router-link>
+              <BugComponent :bugData="bug" />
+            </router-link>
           </li>
         </ul>
       </div>
@@ -78,6 +78,23 @@ export default {
     },
     hide() {
       this.$modal.hide("bugPopUp");
+    },
+    createBug() {
+      let bug = { ...this.newBug };
+      this.$store.dispatch("createBug", bug);
+      this.newBug = {
+        title: "",
+        description: "",
+        reportedBy: ""
+      };
+      this.bugSpecs();
+      this.$store.dispatch("getNotesByBugId");
+    },
+    bugSpecs() {
+      this.$router.push({
+        name: "bugSpecs",
+        params: { id: this.$store.state.activeBug.id }
+      });
     }
   },
   components: {

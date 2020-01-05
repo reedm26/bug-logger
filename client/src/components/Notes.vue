@@ -1,18 +1,23 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>
-    </p>
+  <div class="row">
+    <div class="col-12 border">
+      <h1>{{ notes }}</h1>
+      <p>
+        <a>vue-cli documentation</a>
+      </p>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "notes",
-  props: {
-    msg: String
-  }
+  name: "bugNotes",
+  computed: {
+    notes() {
+      return this.$store.state.bugNotes;
+    }
+  },
+  props: ["noteData"]
 };
 </script>
 
@@ -31,5 +36,9 @@ li {
 }
 a {
   color: #42b983;
+}
+border {
+  border: 2px;
+  text-align: center;
 }
 </style>
