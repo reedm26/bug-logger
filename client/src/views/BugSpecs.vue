@@ -20,7 +20,7 @@
         </h5>
         <p class="border bg-light">{{ bug.description }}</p>
         <div class="button">
-          <button class="bg-danger">Close</button>
+          <button @click="closeBug" class="bg-danger">Close</button>
         </div>
       </div>
     </div>
@@ -61,17 +61,38 @@ export default {
     this.$store.dispatch("getBugById", this.$route.params.id);
     this.$store.dispatch("getNotesByBugId", this.$route.params.id);
   },
-  method: {
+  methods: {
     makeNote() {
       let note = { ...this.newNote };
-      this.newNote = {
+      (this.newNote = {
         reportedBy: "",
         content: "",
         bug: this.$route.params.id
-      };
-      this.$store.dispatch("makeNote", note);
+      }),
+        this.$store.dispatch("makeNote", note);
     }
   },
+  // closeBug() {
+  //   swal({
+  //     title: "Are you sure?",
+  //     text: "You will not be able to recover this bug!",
+  //     type: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonClass: "btn-danger",
+  //     confirmButtonText: "Yes, close it!",
+  //     cancelButtonText: "No, cancel!",
+  //     closeOnConfirm: false,
+  //     closeOnCancel: false
+  //   }).then(softDelete => {
+  //     if (softDelete) {
+  //       swal("Deleted!", "Your bug has been deleted.", { icon: "success" });
+  //       this.$store.dispatch("closeBug", this.$route.params.id);
+  //     } else {
+  //       swal("Cancelled", "Your bug is safe");
+  //     }
+  //   });
+  // },
+
   computed: {
     bug() {
       return this.$store.state.activeBug;

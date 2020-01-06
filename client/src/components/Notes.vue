@@ -17,6 +17,7 @@ export default {
       return this.$store.state.bugNotes;
     }
   },
+
   props: ["bugNotes"]
 };
 </script>

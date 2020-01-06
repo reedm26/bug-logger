@@ -6,6 +6,10 @@
           <img alt="Vue logo" src="../assets/logo.png" />
           Bugger
           <button class="btn-sm btn-danger" @click="show">Report</button>
+          <div class="filter">
+            <label for="filter-bugs"> <h6>Hide Closed:</h6> </label>
+            <input @click="sortStatus" type="checkbox" name="filter-bugs" />
+          </div>
           <modal name="bugPopUp">
             <form @submit.prevent="createBug">
               <input
@@ -73,6 +77,9 @@ export default {
     };
   },
   methods: {
+    sortStatus(prop) {
+      this.bug.sort((a, b));
+    },
     show() {
       this.$modal.show("bugPopUp");
     },
@@ -120,5 +127,8 @@ img scoped {
 }
 .outline {
   border: 3rem;
+}
+.filter {
+  text-align: end;
 }
 </style>
