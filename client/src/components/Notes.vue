@@ -1,10 +1,35 @@
 <template>
-  <div class="row">
-    <div class="col-12 border">
-      <h1 class="">{{ notes }}</h1>
-      <p>
-        <a>vue-cli documentation</a>
-      </p>
+  <div class="bugNotes">
+    <div class="row">
+      <button @click.prevent="show" class="bg-danger">Add</button>
+      <div class="col-12 border">
+        <div>
+          <modal name="notePopUp">
+            <form @submit.prevent="makeNotes">
+              <input
+                type="text"
+                placeholder="whatdoyou want to say..."
+                v-model="newNote.content"
+                name="content"
+              />
+              <input
+                type="text"
+                placeholder="reported by..."
+                v-model="newNote.reportedBy"
+                name="reportedBy"
+              />
+              <button type="submit">add note</button>
+            </form>
+          </modal>
+        </div>
+        <div>
+          <ul>
+            <li v-for="bugNote in bugNotes" :key="bugNote.id">
+              <h1>{{ bugNotes }}</h1>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -12,13 +37,37 @@
 <script>
 export default {
   name: "bugNotes",
-  computed: {
-    notes() {
-      return this.$store.state.bugNotes;
+  data() {
+    return {
+      newNote: {
+        reportedBy: "",
+        content: "",
+        bug: this.$route.params.id
+      }
+    };
+  },
+  methods: {
+    makeNotes() {
+      let bugNote = { ...this.newNote };
+      this.newNote = {
+        reportedBy: "",
+        content: "",
+        bug: this.$route.params.id
+      };
+      this.$store.dispatch("makeNotes", bugNote);
+    },
+    show() {
+      this.$modal.show("notePopUp");
+    },
+    hide() {
+      this.$modal.hide("notePopUp");
     }
   },
-
-  props: ["bugNotes"]
+  computed: {
+    bugNotes() {
+      return this.$store.state.bugNotes;
+    }
+  }
 };
 </script>
 

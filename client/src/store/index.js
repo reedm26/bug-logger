@@ -48,13 +48,17 @@ export default new Vuex.Store({
       commit("setActiveBug", res.data);
       console.log(res.data);
     },
-    async getNotes({ commit, dispatch }, id) {
-      let res = await _sandBox.post("bugs/" + id + "notes");
+    async getNotesByBugId({ commit, dispatch }, id) {
+      let res = await _sandBox.get("bugs/" + id + "/notes");
       commit("displayNotes", res.data);
     },
-    async makeNote({ commit, dispatch }, note) {
+    async makeNotes({ commit, dispatch }, note) {
       let res = await _sandBox.post("notes", note);
       commit("makeNotes", res.data);
+    },
+    async closeBug({ commit, dispatch }, id) {
+      let res = await _sandBox.delete("bugs/" + id);
+      dispatch("getBugById", id);
     }
   },
   modules: {}
