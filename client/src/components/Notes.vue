@@ -5,7 +5,7 @@
       <div class="col-12 border">
         <div>
           <modal name="notePopUp">
-            <form @submit.prevent="makeNotes">
+            <form @submit="makeNotes">
               <input
                 type="text"
                 placeholder="whatdoyou want to say..."
@@ -18,7 +18,7 @@
                 v-model="newNote.reportedBy"
                 name="reportedBy"
               />
-              <button type="submit">add note</button>
+              <button @click="hide" type="submit">add note</button>
             </form>
           </modal>
         </div>

@@ -8,7 +8,7 @@ export default class BugsController {
       .Router()
       .get("", this.getAllBugs)
       .get("/:id", this.getBugsById)
-      .get("/:bugId/notes", this.getNotesByBugId)
+      .get("/:id/notes", this.getNotesByBugId)
       .post("", this.newBug)
       .put("/:id", this.edit)
       .delete("/:id", this.deleteBug);
