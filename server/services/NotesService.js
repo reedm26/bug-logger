@@ -25,14 +25,8 @@ class NotesService {
     let data = await _repository.create(rawData);
     return data;
   }
-  async getNotesByBugId(BugId) {
-    let data = await _repository.find({ bug: BugId });
-    return data;
-
-    if (!data) {
-      throw new ApiError("Invalid Id", 404);
-    }
-    return data;
+  async getNotes() {
+    return await _repository.find({});
   }
 }
 const noteService = new NotesService();

@@ -2,7 +2,7 @@
   <div class="col-12 noteborder">
     <h1>Hello from BugSpecs</h1>
     <div class="row">
-      <div class="col-4">
+      <div class="col-4 ">
         Title:
         <h3>{{ bug.title }}</h3>
       </div>
@@ -10,6 +10,7 @@
         <p>
           Reported By:
         </p>
+
         <h6>{{ bug.reportedBy }}</h6>
       </div>
       <div class="col-8">
@@ -44,33 +45,45 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-12">Notes:</div>
+      <!-- <div class="col-12">Notes:</div>
       <div class="col-4"><h5>Name</h5></div>
       <div class="col-4"><h5>Description</h5></div>
       <div class="col-4"><h5>Delete</h5></div>
-      <div>
-        <bugNotes />
+      <div> -->
+      <div class="col">
+        <table>
+          <tr>
+            <th>Reported By</th>
+            <th>Message</th>
+            <th>Delete</th>
+          </tr>
+          <bugNotes
+            v-for="bugNote in bugNotes"
+            :bugNoteProp="bugNotes"
+            :key="bugNote.id"
+          />
+        </table>
       </div>
-      <div>
-        <modal name="editPopUp">
-          <form @submit.prevent="editBug">
-            <input
-              type="text"
-              placeholder="title..."
-              v-model="bug.title"
-              name="title"
-            />
-            <input
-              type="text"
-              placeholder="description..."
-              v-model="bug.description"
-              name="description"
-            />
+    </div>
+    <div>
+      <modal name="editPopUp">
+        <form @submit.prevent="editBug">
+          <input
+            type="text"
+            placeholder="title..."
+            v-model="bug.title"
+            name="title"
+          />
+          <input
+            type="text"
+            placeholder="description..."
+            v-model="bug.description"
+            name="description"
+          />
 
-            <button>Add</button>
-          </form>
-        </modal>
-      </div>
+          <button>Add</button>
+        </form>
+      </modal>
     </div>
   </div>
 </template>
@@ -115,9 +128,9 @@ export default {
       });
     },
     editBug() {
-      let fixedBug = { ...this.edited };
+      let fixedBug = { ...this.changedBug };
       this.$store.dispatch("editBug", fixedBug);
-      this.editedBug = {
+      this.changedBug = {
         title: this.title,
         description: this.description,
         bug: this.$route.params.id

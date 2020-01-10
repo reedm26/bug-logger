@@ -78,7 +78,8 @@ export default {
   },
   methods: {
     sortStatus(prop) {
-      this.bug.sort((a, b));
+      this.sort((prop = false));
+      return bugData.closed;
     },
     show() {
       this.$modal.show("bugPopUp");
@@ -94,14 +95,11 @@ export default {
         description: "",
         reportedBy: ""
       };
-      this.bugSpecs();
-      this.$store.dispatch("getNotesByBugId");
-    },
-    bugSpecs() {
+
       this.$router.push({
-        name: "bugSpecs",
-        params: { id: this.$store.state.activeBug.id }
+        path: `/bugs/` + this.$store.state.activeBug.id
       });
+      this.$store.dispatch("getNotesByBugId");
     }
   },
   components: {
