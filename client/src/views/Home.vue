@@ -7,17 +7,14 @@
           Bugger
           <button class="btn-sm btn-danger" @click="show">Report</button>
           <div class="filter">
-            <label for="filter-bugs"> <h6>Hide Closed:</h6> </label>
+            <label for="filter-bugs">
+              <h6>Hide Closed:</h6>
+            </label>
             <input @click="sortStatus" type="checkbox" name="filter-bugs" />
           </div>
           <modal name="bugPopUp">
             <form @submit.prevent="createBug">
-              <input
-                type="text"
-                placeholder="title..."
-                v-model="newBug.title"
-                name="title"
-              />
+              <input type="text" placeholder="title..." v-model="newBug.title" name="title" />
               <input
                 type="text"
                 placeholder="description..."
@@ -52,6 +49,9 @@
           </li>
         </ul>
       </div>
+    </div>
+    <div>
+      <b-table striped hover :newBug="newBug"></b-table>
     </div>
   </div>
 </template>
