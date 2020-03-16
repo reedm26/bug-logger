@@ -51,7 +51,19 @@
       </div>
     </div>
     <div>
-      <b-table striped hover :newBug="newBug"></b-table>
+      <button type="button" @click="showModal" data-toggle="modal">Launch demo modal</button>
+
+      <div
+        class="modal fade bd-example-modal-sm"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="mySmallModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">...</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -83,6 +95,9 @@ export default {
     },
     show() {
       this.$modal.show("bugPopUp");
+    },
+    showModal() {
+      this.$refs.newModal.show();
     },
     hide() {
       this.$modal.hide("bugPopUp");
