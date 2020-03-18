@@ -51,7 +51,13 @@
       </div>
     </div>
     <div>
-      <button type="button" @click="showModal" data-toggle="modal">Launch demo modal</button>
+      <button
+        type="button"
+        name="bugPopUp"
+        @click="showModal"
+        data-toggle="modal"
+        class="bg-primary"
+      >Report Bug</button>
 
       <div
         class="modal fade bd-example-modal-sm"
