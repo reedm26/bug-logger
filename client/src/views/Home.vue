@@ -14,7 +14,13 @@
           </div>
           <modal name="bugPopUp">
             <form @submit.prevent="createBug">
-              <input type="text" placeholder="title..." v-model="newBug.title" name="title" />
+              <input
+                type="text"
+                placeholder="title..."
+                v-model="newBug.title"
+                name="title"
+                class="text-align"
+              />
               <input
                 type="text"
                 placeholder="description..."
