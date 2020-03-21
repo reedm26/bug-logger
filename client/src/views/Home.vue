@@ -14,7 +14,13 @@
           </div>
           <modal name="bugPopUp">
             <form @submit.prevent="createBug">
-              <input type="text" placeholder="title..." v-model="newBug.title" name="title" />
+              <input
+                type="text"
+                placeholder="title..."
+                v-model="newBug.title"
+                name="title"
+                class="text-align"
+              />
               <input
                 type="text"
                 placeholder="description..."
@@ -51,7 +57,13 @@
       </div>
     </div>
     <div>
-      <button type="button" @click="showModal" data-toggle="modal">Launch demo modal</button>
+      <button
+        type="button"
+        name="bugPopUp"
+        @click="showModal"
+        data-toggle="modal"
+        class="bg-primary"
+      >Report Bug</button>
 
       <div
         class="modal fade bd-example-modal-sm"
