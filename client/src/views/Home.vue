@@ -5,37 +5,13 @@
         <h3>
           <img alt="Vue logo" src="../assets/logo.png" />
           Bugger
-          <button class="btn-sm btn-danger" @click="show">Report</button>
+          <button class="btn-sm btn-danger" @click="addNewBug()">Report</button>
           <div class="filter">
             <label for="filter-bugs">
               <h6>Hide Closed:</h6>
             </label>
             <input @click="sortStatus" type="checkbox" name="filter-bugs" />
           </div>
-          <modal name="bugPopUp">
-            <form @submit.prevent="createBug">
-              <input
-                type="text"
-                placeholder="title..."
-                v-model="newBug.title"
-                name="title"
-                class="text-align"
-              />
-              <input
-                type="text"
-                placeholder="description..."
-                v-model="newBug.description"
-                name="description"
-              />
-              <input
-                type="text"
-                placeholder="reported by..."
-                v-model="newBug.reportedBy"
-                name="reportedBy"
-              />
-              <button>Add</button>
-            </form>
-          </modal>
         </h3>
       </div>
       <div class="col-12">
@@ -54,29 +30,6 @@
             </router-link>
           </li>
         </ul>
-      </div>
-    </div>
-    <div>
-      <button
-        type="button"
-        name="bugPopUp"
-        @click="addNewBug()"
-        data-toggle="modal"
-        class="bg-primary"
-      >
-        Report Bug
-      </button>
-
-      <div
-        class="modal fade bd-example-modal-sm"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="mySmallModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content">...</div>
-        </div>
       </div>
     </div>
   </div>
