@@ -12,6 +12,30 @@
             </label>
             <input @click="sortStatus" type="checkbox" name="filter-bugs" />
           </div>
+          <modal name="bugPopUp">
+            <form @submit.prevent="createBug">
+              <input
+                type="text"
+                placeholder="title..."
+                v-model="newBug.title"
+                name="title"
+                class="text-align"
+              />
+              <input
+                type="text"
+                placeholder="description..."
+                v-model="newBug.description"
+                name="description"
+              />
+              <input
+                type="text"
+                placeholder="reported by..."
+                v-model="newBug.reportedBy"
+                name="reportedBy"
+              />
+              <button>Add</button>
+            </form>
+          </modal>
         </h3>
       </div>
       <div class="col-12">
@@ -60,27 +84,38 @@ export default {
       this.sort((prop = false));
       return bugData.closed;
     },
-    show() {
-      this.$modal.show("bugPopUp");
-    },
+
     async addNewBug() {
       const value = await Swal.fire({
-        title: "Multiple inputs",
+        title: "Report Your Bug",
         html:
-          '<input id="swal-input1" class="swal2-input">' +
-          '<input id="swal-input2" class="swal2-input">',
+          '<input id="title" placeholder="title..." class="swal2-input">' +
+          '<input id="description" placeholder="description..." class="swal2-input">' +
+          '<input id="reportedBy" placeholder="reported by..." class="swal2-input">',
+        showCancelButton: true,
+        cancelButtonColor: "#d33",
         focusConfirm: false,
         preConfirm: () => {
-          return [
-            document.getElementById("swal-input1").value,
-            document.getElementById("swal-input2").value
-          ];
+          let title = document.getElementById("#title").value;
+          let description = document.getElementById("#description").value;
+          let reportedBy = document.getElementById("#reportedBy").value;
+          if (title && description && reportedBy) {
+            let bug = {
+              title: title,
+              description: description,
+              reportedBy: reportedBy,
+              closed: false
+            };
+            this.$store.dispatch("createBug", bug);
+          } else {
+            Swal.showValidationMessage("Please fill out all fields");
+          }
         }
       });
 
-      if (formValues) {
-        Swal.fire(JSON.stringify(formValues));
-      }
+      // if (formValues) {
+      //   Swal.fire(JSON.stringify(formValues));
+      // }
     },
     hide() {
       this.$modal.hide("bugPopUp");
