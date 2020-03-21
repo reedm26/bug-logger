@@ -60,10 +60,12 @@
       <button
         type="button"
         name="bugPopUp"
-        @click="showModal"
+        @click="addNewBug()"
         data-toggle="modal"
         class="bg-primary"
-      >Report Bug</button>
+      >
+        Report Bug
+      </button>
 
       <div
         class="modal fade bd-example-modal-sm"
@@ -108,8 +110,24 @@ export default {
     show() {
       this.$modal.show("bugPopUp");
     },
-    showModal() {
-      this.$refs.newModal.show();
+    async addNewBug() {
+      const value = await Swal.fire({
+        title: "Multiple inputs",
+        html:
+          '<input id="swal-input1" class="swal2-input">' +
+          '<input id="swal-input2" class="swal2-input">',
+        focusConfirm: false,
+        preConfirm: () => {
+          return [
+            document.getElementById("swal-input1").value,
+            document.getElementById("swal-input2").value
+          ];
+        }
+      });
+
+      if (formValues) {
+        Swal.fire(JSON.stringify(formValues));
+      }
     },
     hide() {
       this.$modal.hide("bugPopUp");
@@ -155,5 +173,10 @@ img scoped {
 }
 .filter {
   text-align: end;
+}
+body {
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
 }
 </style>
