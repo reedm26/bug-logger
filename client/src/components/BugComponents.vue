@@ -1,17 +1,22 @@
 <template>
-  <div class="d-flex">
-    <div class="col-3">
-      {{ bugData.title }}
-    </div>
-    <div class="col-3">{{ bugData.reportedBy }}</div>
-    <div style="color: green" class="col-3" v-if="bugData.closed === false">
+  <tr class="bg-light text-dark">
+    <td>
+      <router-link :to="{ name: 'bugSpecs', params: { id: bugData._id } }">
+        {{ bugData.title }}
+      </router-link>
+    </td>
+    <td class="col">{{ bugData.reportedBy }}</td>
+    <td style="color: green" class="col" v-if="bugData.closed === false">
       Open
-    </div>
-    <div style="color: red" class="col-3" v-if="bugData.closed === true">
+    </td>
+    <td style="color: red" class="col" v-if="bugData.closed === true">
       Closed
-    </div>
-    <div class="col-3">{{ date }}</div>
-  </div>
+    </td>
+    <td class="col">{{ date }}</td>
+    <td class="col">
+      <i style="color: red" class="fas fa-trash-alt pl-3"></i>
+    </td>
+  </tr>
 </template>
 
 <script>
@@ -22,9 +27,17 @@ export default {
     date() {
       let d = new Date(this.bugData.updatedAt);
       return d.toLocaleDateString();
+    },
+    bugs() {
+      console.log("bugs in store", this.$store.state.bugs);
+      return this.$store.state.bugs;
     }
   }
 };
 </script>
 
-<style></style>
+<style>
+.trash {
+  text-align: center;
+}
+</style>
