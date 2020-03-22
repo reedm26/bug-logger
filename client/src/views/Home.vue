@@ -14,15 +14,30 @@
           </div>
         </h3>
       </div>
-      <div class="col-12">
+      <!-- <div class="col-12">
         <div class="row outline bg-light">
           <div class="col-3">Title</div>
           <div class="col-3">Remove</div>
           <div class="col-3">Status</div>
           <div class="col-3">Last Modified</div>
         </div>
-      </div>
-      <div class="row">
+      </div> -->
+      <table id="table" class="table table-bordered table-hover table-dark">
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Reported By</th>
+            <th scope="col">Status</th>
+            <th scope="col">Last Modified</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <BugComponent v-for="bug in bugs" :key="bug.id" :bugData="bug" />
+        </tbody>
+      </table>
+
+      <!-- <div class="col-12">
         <ul>
           <li v-for="bug in bugs" :key="bug.id">
             <router-link :to="{ name: 'bugSpecs', params: { id: bug._id } }">
@@ -30,7 +45,7 @@
             </router-link>
           </li>
         </ul>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -113,9 +128,9 @@ img scoped {
   height: 6px;
   text-align: center;
 }
-.outline {
+/* .outline {
   border: 3rem;
-}
+} */
 .filter {
   text-align: end;
 }
