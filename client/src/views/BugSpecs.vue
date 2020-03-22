@@ -1,23 +1,24 @@
 <template>
   <div class="col-12 noteborder">
-    <h1>Hello from BugSpecs</h1>
+    <h1 class="caps">{{ bug.title }}</h1>
     <div class="row">
-      <div class="col-4 ">
+      <!-- <div class="col-4 ">
         Title:
         <h3>{{ bug.title }}</h3>
-      </div>
-      <div class="col-8">
+      </div> -->
+      <div class="col-6">
         <p>
           Reported By:
         </p>
 
         <h6>{{ bug.reportedBy }}</h6>
       </div>
-      <div class="col-8">
+      <div class="col-6">
         <p>
           Status:
         </p>
-        <h6>{{ bug.closed }}</h6>
+        <h6 v-if="bug.closed === false">Open</h6>
+        <h6 v-if="bug.closed === true">Closed</h6>
       </div>
     </div>
     <div class="row">
@@ -107,7 +108,7 @@ export default {
     this.$store.dispatch("getNotesByBugId", this.$route.params.id);
   },
   methods: {
-    closeBug() {
+    closeBug(id) {
       swal({
         title: "Are you sure?",
         text: "You will not be able to recover this bug!",
@@ -154,7 +155,8 @@ export default {
   },
   components: {
     bugNotes
-  }
+  },
+  props: ["bugNote"]
 };
 </script>
 
@@ -168,5 +170,8 @@ export default {
 }
 .button {
   text-align: end;
+}
+.caps {
+  text-transform: capitalize;
 }
 </style>
