@@ -12,30 +12,6 @@
             </label>
             <input @click="sortStatus" type="checkbox" name="filter-bugs" />
           </div>
-          <modal name="bugPopUp">
-            <form @submit.prevent="createBug">
-              <input
-                type="text"
-                placeholder="title..."
-                v-model="newBug.title"
-                name="title"
-                class="text-align"
-              />
-              <input
-                type="text"
-                placeholder="description..."
-                v-model="newBug.description"
-                name="description"
-              />
-              <input
-                type="text"
-                placeholder="reported by..."
-                v-model="newBug.reportedBy"
-                name="reportedBy"
-              />
-              <button>Add</button>
-            </form>
-          </modal>
         </h3>
       </div>
       <div class="col-12">
@@ -89,16 +65,16 @@ export default {
       const value = await Swal.fire({
         title: "Report Your Bug",
         html:
-          '<input id="title" placeholder="title..." class="swal2-input">' +
+          '<input id="title" placeholder="title..." v-model="newBug.title" class="swal2-input">' +
           '<input id="description" placeholder="description..." class="swal2-input">' +
           '<input id="reportedBy" placeholder="reported by..." class="swal2-input">',
         showCancelButton: true,
         cancelButtonColor: "#d33",
         focusConfirm: false,
         preConfirm: () => {
-          let title = document.getElementById("#title").value;
-          let description = document.getElementById("#description").value;
-          let reportedBy = document.getElementById("#reportedBy").value;
+          let title = document.querySelector("#title").value;
+          let description = document.querySelector("#description").value;
+          let reportedBy = document.querySelector("#reportedBy").value;
           if (title && description && reportedBy) {
             let bug = {
               title: title,
@@ -106,33 +82,14 @@ export default {
               reportedBy: reportedBy,
               closed: false
             };
-            this.$store.dispatch("createBug", bug);
+            this.$store.dispatch("createBug", bug).then(response => {
+              this.$router.push(`/bugs/` + this.$store.state.activeBug.id);
+            });
           } else {
             Swal.showValidationMessage("Please fill out all fields");
           }
         }
       });
-
-      // if (formValues) {
-      //   Swal.fire(JSON.stringify(formValues));
-      // }
-    },
-    hide() {
-      this.$modal.hide("bugPopUp");
-    },
-    createBug() {
-      let bug = { ...this.newBug };
-      this.$store.dispatch("createBug", bug);
-      this.newBug = {
-        title: "",
-        description: "",
-        reportedBy: ""
-      };
-
-      this.$router.push({
-        path: `/bugs/` + this.$store.state.activeBug.id
-      });
-      this.$store.dispatch("getNotesByBugId");
     }
   },
   components: {
