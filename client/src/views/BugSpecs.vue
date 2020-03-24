@@ -1,35 +1,31 @@
 <template>
   <div class="col-12 noteborder">
-    <h1>Hello from BugSpecs</h1>
-    <div class="row">
-      <div class="col-4 ">
-        Title:
-        <h3>{{ bug.title }}</h3>
-      </div>
-      <div class="col-8">
-        <p>
+    <h1 class="caps">{{ bug.title }}</h1>
+    <div class="row mb-4">
+      <div class="col-6">
+        <small>
           Reported By:
-        </p>
+        </small>
 
-        <h6>{{ bug.reportedBy }}</h6>
+        <h4>{{ bug.reportedBy }}</h4>
       </div>
-      <div class="col-8">
-        <p>
+      <div class="col-6">
+        <small>
           Status:
-        </p>
-        <h6>{{ bug.closed }}</h6>
+        </small>
+        <h4 style="color: green" v-if="bug.closed === false">Open</h4>
+        <h4 style="color: red" v-if="bug.closed === true">Closed</h4>
       </div>
     </div>
-    <div class="row">
+    <div class="row text-center">
       <div class="col-12">
-        <h5>
+        <h3>
           Description:
-        </h5>
-        <p class="border bg-light">{{ bug.description }}</p>
-        <div class="button">
+        </h3>
+        <div class="col-3button">
           <button
             v-if="bug.closed === false"
-            @click="closeBug"
+            @click="closeBug(bug.id)"
             class="bg-danger"
           >
             Close
@@ -44,25 +40,24 @@
         </div>
       </div>
     </div>
+    <div class="row text-center">
+      <p class="col-9 bg-light">{{ bug.description }}</p>
+    </div>
+    <!-- <div class="button">
+      <button v-if="bug.closed === false" @click="closeBug" class="bg-danger">
+        Close
+      </button>
+      <button v-if="bug.closed === false" @click="editBug" class="bg-success">
+        Edit Bug
+      </button>
+    </div> -->
     <div class="row">
-      <!-- <div class="col-12">Notes:</div>
-      <div class="col-4"><h5>Name</h5></div>
-      <div class="col-4"><h5>Description</h5></div>
-      <div class="col-4"><h5>Delete</h5></div>
-      <div> -->
       <div class="col">
-        <table>
-          <tr>
-            <th>Reported By</th>
-            <th>Message</th>
-            <th>Delete</th>
-          </tr>
-          <bugNotes
-            v-for="bugNote in bugNotes"
-            :bugNoteProp="bugNotes"
-            :key="bugNote.id"
-          />
-        </table>
+        <bugNotes
+          v-for="bugNote in bugNotes"
+          :bugNoteProp="bugNotes"
+          :key="bugNote.id"
+        />
       </div>
     </div>
     <div>
@@ -107,25 +102,21 @@ export default {
     this.$store.dispatch("getNotesByBugId", this.$route.params.id);
   },
   methods: {
-    closeBug() {
-      swal({
-        title: "Are you sure?",
-        text: "You will not be able to recover this bug!",
-        type: "warning",
+    closeBug(id) {
+      Swal.fire({
+        title: "Are you sure you want to close this?",
+        text: "You won't be able to open this bug again!",
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonClass: "btn-danger",
-        confirmButtonText: "Yes, close it!",
-        cancelButtonText: "No, cancel!",
-        closeOnConfirm: false,
-        closeOnCancel: false
-      }).then(softDelete => {
-        if (softDelete) {
-          swal("Deleted!", "Your bug has been deleted.", { icon: "success" });
-          this.$store.dispatch("closeBug", this.$route.params.id);
-        } else {
-          swal("Cancelled", "Your bug is safe");
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, close it!"
+      }).then(result => {
+        if (result.value) {
+          Swal.fire("Closed!", "Your bug has been closed.", "success");
         }
       });
+      this.$store.dispatch("closeBug", id);
     },
     editBug() {
       let fixedBug = { ...this.changedBug };
@@ -135,12 +126,6 @@ export default {
         description: this.description,
         bug: this.$route.params.id
       };
-    },
-    show() {
-      this.$modal.show("editBug");
-    },
-    hide() {
-      this.$modal.hide("editBug");
     }
   },
 
@@ -154,7 +139,8 @@ export default {
   },
   components: {
     bugNotes
-  }
+  },
+  props: ["bugNote"]
 };
 </script>
 
@@ -169,4 +155,13 @@ export default {
 .button {
   text-align: end;
 }
+.caps {
+  text-transform: capitalize;
+}
 </style>
+Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia totam unde,
+quidem soluta pariatur perferendis iste amet, voluptas eveniet ipsa repellendus
+consectetur facilis animi blanditiis qui aut earum. Vero, ipsa! Lorem ipsum
+dolor sit amet consectetur adipisicing elit. Quod animi quas, voluptatum maiores
+qui quam fuga ducimus distinctio nihil temporibus odit deleniti! Voluptate,
+accusamus corrupti quidem mollitia natus aut impedit.

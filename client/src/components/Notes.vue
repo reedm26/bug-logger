@@ -24,11 +24,11 @@
         </div> -->
   <!-- <div> -->
   <tr class="bugNote" @click="displayNotes(bug._id)">
-    <td>{{ bugNote.content }}</td>
-    <td>{{ bugNote.reportedBy }}</td>
-    <td class="status open" v-if="bugNote.closed == false"></td>
-    <td class="status closed" v-else>{{ this.status }}</td>
-    <td>{{ this.newDate }}</td>
+    <td>{{ newNote.content }}</td>
+    <td>{{ newNote.reportedBy }}</td>
+    <td class="status open" v-if="newNote.closed == false"></td>
+    <td class="status closed" v-else>{{ newNote.status }}</td>
+    <td>{{ newNote.newDate }}</td>
   </tr>
   <!-- <ul>
             <li v-for="bugNote in bugNotes" :key="bugNote.id">
