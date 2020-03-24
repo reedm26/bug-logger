@@ -18,11 +18,11 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-6 text-right">
+      <div class="col-12">
         <h3>
           Description:
         </h3>
-        <div class="button">
+        <div class="col-3button">
           <button
             v-if="bug.closed === false"
             @click="closeBug(bug.id)"
@@ -40,7 +40,7 @@
         </div>
       </div>
 
-      <p class="col-3 bg-light">{{ bug.description }}</p>
+      <p class="col-10 mx-3 bg-light">{{ bug.description }}</p>
     </div>
     <!-- <div class="button">
       <button v-if="bug.closed === false" @click="closeBug" class="bg-danger">
@@ -158,3 +158,9 @@ export default {
   text-transform: capitalize;
 }
 </style>
+Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia totam unde,
+quidem soluta pariatur perferendis iste amet, voluptas eveniet ipsa repellendus
+consectetur facilis animi blanditiis qui aut earum. Vero, ipsa! Lorem ipsum
+dolor sit amet consectetur adipisicing elit. Quod animi quas, voluptatum maiores
+qui quam fuga ducimus distinctio nihil temporibus odit deleniti! Voluptate,
+accusamus corrupti quidem mollitia natus aut impedit.
