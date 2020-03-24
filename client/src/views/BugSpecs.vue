@@ -17,7 +17,7 @@
         <h4 style="color: red" v-if="bug.closed === true">Closed</h4>
       </div>
     </div>
-    <div class="row">
+    <div class="row text-center">
       <div class="col-12">
         <h3>
           Description:
@@ -39,8 +39,9 @@
           </button>
         </div>
       </div>
-
-      <p class="col-10 mx-3 bg-light">{{ bug.description }}</p>
+    </div>
+    <div class="row text-center">
+      <p class="col-9 bg-light">{{ bug.description }}</p>
     </div>
     <!-- <div class="button">
       <button v-if="bug.closed === false" @click="closeBug" class="bg-danger">
