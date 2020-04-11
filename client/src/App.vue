@@ -1,11 +1,18 @@
 <template>
-  <div id="app">
+  <div id="app back-color">
     <router-link class="bg-dark d-flex" to="/">
-      <h3 class="text-light ml-2">Home</h3>
+      <h3 class="text-light ml-2 nav-bar">Home</h3>
     </router-link>
     <router-view />
   </div>
 </template>
 <script></script>
 
-<style></style>
+<style>
+.nav-bar {
+  color: #3b4245;
+}
+.back-color {
+  color: #729192;
+}
+</style>

@@ -1,17 +1,11 @@
 <template>
   <tr class="bg-light text-dark">
     <td>
-      <router-link :to="{ name: 'bugSpecs', params: { id: bugData._id } }">
-        {{ bugData.title }}
-      </router-link>
+      <router-link :to="{ name: 'bugSpecs', params: { id: bugData._id } }">{{ bugData.title }}</router-link>
     </td>
     <td class="col">{{ bugData.reportedBy }}</td>
-    <td style="color: green" class="col" v-if="bugData.closed === false">
-      Open
-    </td>
-    <td style="color: red" class="col" v-if="bugData.closed === true">
-      Closed
-    </td>
+    <td style="color: green" class="col" v-if="bugData.closed === false">Open</td>
+    <td style="color: red" class="col" v-if="bugData.closed === true">Closed</td>
     <td class="col">{{ date }}</td>
     <td class="col">
       <i style="color: red" class="fas fa-trash-alt pl-3"></i>
@@ -39,5 +33,8 @@ export default {
 <style>
 .trash {
   text-align: center;
+}
+.back-color {
+  color: #729192;
 }
 </style>

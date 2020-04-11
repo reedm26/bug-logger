@@ -110,9 +110,7 @@ img scoped {
   height: 6px;
   text-align: center;
 }
-/* .outline {
-  border: 3rem;
-} */
+
 .filter {
   text-align: end;
 }
@@ -120,5 +118,8 @@ body {
   font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial,
     sans-serif;
+}
+.back-color {
+  color: #729192;
 }
 </style>
