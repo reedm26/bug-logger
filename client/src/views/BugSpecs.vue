@@ -4,12 +4,12 @@
     <button v-if="bug.closed === false" @click="closeBug(bug.id)" class="btn btn-sm bg-danger">Close</button>
     <button v-if="bug.closed === false" @click="editBug" class="btn btn-sm bg-success">Edit Bug</button>
     <div class="row mb-4">
-      <div class="col-4 bg-light desc-border">
+      <div class="col-4 desc-border text-dark back-color">
         <small>Reported By:</small>
         <h4>{{ bug.reportedBy }}</h4>
       </div>
       <div class="col-4"></div>
-      <div class="col-4 bg-light desc-border">
+      <div class="col-4 back-color text-dark desc-border">
         <small>Status:</small>
         <h4 style="color: green" v-if="bug.closed === false">Open</h4>
         <h4 style="color: red" v-if="bug.closed === true">Closed</h4>
@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="row text-center">
-      <p class="col bg-light p-4 desc-border">{{ bug.description }}</p>
+      <p class="col back-color text-dark p-4 desc-border">{{ bug.description }}</p>
     </div>
 
     <div class="row">
@@ -113,7 +113,9 @@ export default {
   border: 2px;
   text-align: center;
 }
-
+.back-color {
+  background-color: #e5dfdf;
+}
 .caps {
   text-transform: capitalize;
 }
