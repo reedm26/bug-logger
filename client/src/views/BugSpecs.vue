@@ -1,30 +1,38 @@
 <template>
   <div class="container noteborder">
-    <h1 class="caps">
-      {{ bug.title }}
-      <div class="dropdown">
-        <button
-          class="btn btn-secondary dropdown-toggle"
-          type="button"
-          id="dropdownMenuButton"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          <i class="far fa-edit"></i>
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+    <div class="row mb-4">
+      <div class="col-12 d-flex flex-row">
+        <h1 class="caps">{{ bug.title }}</h1>
+
+        <div class="dropdown mt-2 ml-2">
+          <button
+            class="btn btn-sm btn-primary dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i class="far fa-edit"></i>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a
+              v-if="bug.closed === false"
+              @click="closeBug(bug.id)"
+              class="dropdown-item"
+              href="#"
+            >Close</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
         </div>
+        <!-- <button v-if="bug.closed === false" @click="closeBug(bug.id)" class="btn btn-sm bg-danger">Close</button> -->
+        <!-- <button v-if="bug.closed === false" @click="editBug" class="btn btn-sm bg-warning"> -->
+        <i v-if="bug.closed === false" @click="closeBug(bug.id)" class="far fa-times-circle"></i>
+        <i v-if="bug.closed === false" @click="editBug" class="far fa-edit"></i>
+        <!-- </button> -->
       </div>
-    </h1>
-    <!-- <button v-if="bug.closed === false" @click="closeBug(bug.id)" class="btn btn-sm bg-danger">Close</button> -->
-    <!-- <button v-if="bug.closed === false" @click="editBug" class="btn btn-sm bg-warning"> -->
-    <i v-if="bug.closed === false" @click="closeBug(bug.id)" class="far fa-times-circle"></i>
-    <i v-if="bug.closed === false" @click="editBug" class="far fa-edit"></i>
-    <!-- </button> -->
+    </div>
     <div class="row mb-4">
       <div class="col-4 desc-border text-dark back-color">
         <small>Reported By:</small>
@@ -116,7 +124,7 @@ export default {
           Swal.fire("Closed!", "Your bug has been closed.", "success");
         }
       });
-      this.$store.dispatch("closeBug", id);
+      // this.$store.dispatch("closeBug", id);
     },
     editBug() {
       let fixedBug = { ...this.changedBug };
