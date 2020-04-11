@@ -1,8 +1,11 @@
 <template>
   <div class="container noteborder">
     <h1 class="caps">{{ bug.title }}</h1>
-    <button v-if="bug.closed === false" @click="closeBug(bug.id)" class="btn btn-sm bg-danger">Close</button>
-    <button v-if="bug.closed === false" @click="editBug" class="btn btn-sm bg-success">Edit Bug</button>
+    <!-- <button v-if="bug.closed === false" @click="closeBug(bug.id)" class="btn btn-sm bg-danger">Close</button> -->
+    <!-- <button v-if="bug.closed === false" @click="editBug" class="btn btn-sm bg-warning"> -->
+    <i v-if="bug.closed === false" @click="closeBug(bug.id)" class="far fa-times-circle"></i>
+    <i v-if="bug.closed === false" @click="editBug" class="far fa-edit"></i>
+    <!-- </button> -->
     <div class="row mb-4">
       <div class="col-4 desc-border text-dark back-color">
         <small>Reported By:</small>
@@ -43,6 +46,20 @@
           <button>Add</button>
         </form>
       </modal>
+      <div class="col-12">Comments:</div>
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Recipient's username"
+          aria-label="Recipient's username"
+          aria-describedby="basic-addon2"
+        />
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="button">Button</button>
+        </div>
+      </div>
+      <bugNotes />
     </div>
   </div>
 </template>
