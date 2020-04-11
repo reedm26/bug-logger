@@ -4,11 +4,12 @@
     <button v-if="bug.closed === false" @click="closeBug(bug.id)" class="btn btn-sm bg-danger">Close</button>
     <button v-if="bug.closed === false" @click="editBug" class="btn btn-sm bg-success">Edit Bug</button>
     <div class="row mb-4">
-      <div class="col-5 bg-light desc-border">
+      <div class="col-4 bg-light desc-border">
         <small>Reported By:</small>
         <h4>{{ bug.reportedBy }}</h4>
       </div>
-      <div class="col-5 bg-light desc-border">
+      <div class="col-4"></div>
+      <div class="col-4 bg-light desc-border">
         <small>Status:</small>
         <h4 style="color: green" v-if="bug.closed === false">Open</h4>
         <h4 style="color: red" v-if="bug.closed === true">Closed</h4>
