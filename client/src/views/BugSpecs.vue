@@ -26,11 +26,6 @@
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
         </div>
-        <!-- <button v-if="bug.closed === false" @click="closeBug(bug.id)" class="btn btn-sm bg-danger">Close</button> -->
-        <!-- <button v-if="bug.closed === false" @click="editBug" class="btn btn-sm bg-warning"> -->
-        <i v-if="bug.closed === false" @click="closeBug(bug.id)" class="far fa-times-circle"></i>
-        <i v-if="bug.closed === false" @click="editBug" class="far fa-edit"></i>
-        <!-- </button> -->
       </div>
     </div>
     <div class="row mb-4">
