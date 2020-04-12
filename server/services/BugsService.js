@@ -29,7 +29,6 @@ class BugsService {
 
   async getBugsById(id) {
     let data = await _repository.findById(id);
-    return data;
     if (!data) {
       throw new ApiError("Invalid Id", 400);
     }

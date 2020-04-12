@@ -10,7 +10,7 @@
             <label for="filter-bugs">
               <h6>Hide Closed:</h6>
             </label>
-            <input @click="sortStatus" type="checkbox" name="filter-bugs" />
+            <input type="checkbox" name="filter-bugs" />
           </div>
         </h3>
       </div>
@@ -54,6 +54,10 @@ export default {
   },
   methods: {
     sortStatus(prop) {
+      this.sort((prop = false));
+      return bugData.closed;
+    },
+    filter(prop) {
       this.sort((prop = false));
       return bugData.closed;
     },

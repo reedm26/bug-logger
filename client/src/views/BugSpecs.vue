@@ -23,7 +23,7 @@
               href="#"
             >Close</a>
             <a v-if="bug.closed === false" @click="editBug" class="dropdown-item" href="#">Edit</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="#">Something else</a>
           </div>
         </div>
       </div>
@@ -117,9 +117,11 @@ export default {
       }).then(result => {
         if (result.value) {
           Swal.fire("Closed!", "Your bug has been closed.", "success");
+          return this.$store.dispatch("closeBug", id);
+        } else {
+          return;
         }
       });
-      // this.$store.dispatch("closeBug", id);
     },
     editBug() {
       let fixedBug = { ...this.changedBug };
