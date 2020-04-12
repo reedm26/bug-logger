@@ -22,7 +22,7 @@
               class="dropdown-item"
               href="#"
             >Close</a>
-            <a class="dropdown-item" href="#">Another action</a>
+            <a v-if="bug.closed === false" @click="editBug" class="dropdown-item" href="#">Edit</a>
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
         </div>

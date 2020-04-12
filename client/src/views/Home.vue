@@ -122,4 +122,28 @@ body {
 .back-color {
   color: #729192;
 }
+table {
+  border-radius: 15px !important;
+  border-collapse: collapse !important;
+  border: none !important;
+}
+table th,
+table td {
+  border: none !important;
+}
+table th:first-child {
+  border-radius: 15px 0 0 0 !important;
+}
+table th:last-child {
+  border-radius: 0 15px 0 0 !important;
+}
+table tr:last-child td:first-child {
+  border-radius: 0 0 0 15px !important;
+}
+table tr:last-child td:last-child {
+  border-radius: 0 0 15px 0 !important;
+}
+table tr:hover td {
+  background-color: #ddd !important;
+}
 </style>
