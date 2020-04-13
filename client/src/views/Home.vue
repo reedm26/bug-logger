@@ -5,7 +5,10 @@
         <h3>
           <img alt="Vue logo" src="../assets/logo.png" />
           Bugger
-          <button class="btn-sm btn-danger" @click="addNewBug()">Report</button>
+          <button class="btn-sm btn-danger" @click="addNewBug()">
+            Report
+            <i class="fas fa-bug"></i>
+          </button>
           <div class="filter">
             <label for="filter-bugs">
               <h6>Hide Closed:</h6>
