@@ -1,4 +1,5 @@
 <template>
+  <h1>the note page</h1>
   <!-- <div class="bugNotes">
     <div class="row">
       <button @click.prevent="show" class="bg-danger">Add</button>
@@ -21,15 +22,15 @@
               <button @click="hide" type="submit">add note</button>
             </form>
           </modal>
-        </div> -->
+  </div>-->
   <!-- <div> -->
-  <tr class="bugNote" @click="displayNotes(bug._id)">
+  <!-- <tr class="bugNote" @click="displayNotes(bug._id)">
     <td>{{ newNote.content }}</td>
     <td>{{ newNote.reportedBy }}</td>
     <td class="status open" v-if="newNote.closed == false"></td>
     <td class="status closed" v-else>{{ newNote.status }}</td>
     <td>{{ newNote.newDate }}</td>
-  </tr>
+  </tr>-->
   <!-- <ul>
             <li v-for="bugNote in bugNotes" :key="bugNote.id">
               <h1>{{ bugNote.reportedBy }}</h1>
@@ -37,7 +38,7 @@
           </ul>
         </div>
       </div>
-    </div> -->
+  </div>-->
   <!-- </div> -->
 </template>
 

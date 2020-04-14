@@ -80,7 +80,7 @@
           <button class="btn btn-primary" type="button">Button</button>
         </div>
       </div>
-      <bugNotes />
+      <bugNotes v-for="bugNote in bugNotes" :key="bugNote.id" :bugData="bugNote" />
     </div>
   </div>
 </template>
