@@ -145,7 +145,7 @@ export default {
   components: {
     bugNotes
   },
-  props: ["bugNote"]
+  props: ["bugNotes"]
 };
 </script>
 
