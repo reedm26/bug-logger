@@ -50,7 +50,7 @@
 
     <div class="row">
       <div class="col">
-        <bugNotes v-for="bugNote in bugNotes" :bugNoteProp="bugNotes" :key="bugNote.id" />
+        <!-- <bugNotes v-for="bugNote in bugNotes" :bugNoteProp="bugNotes" :key="bugNote.id" /> -->
       </div>
     </div>
     <div>

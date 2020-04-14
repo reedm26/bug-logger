@@ -1,5 +1,12 @@
 <template>
-  <h1>the note page</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1>the note page</h1>
+        <div>{{bugNotes.content}}</div>
+      </div>
+    </div>
+  </div>
   <!-- <div class="bugNotes">
     <div class="row">
       <button @click.prevent="show" class="bg-danger">Add</button>
