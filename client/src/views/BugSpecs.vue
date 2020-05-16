@@ -77,7 +77,7 @@
           aria-describedby="basic-addon2"
         />
         <div class="input-group-append">
-          <button class="btn btn-primary" type="button">Comment</button>
+          <button class="btn btn-primary" type="button" @click="addBugNotes">Comment</button>
         </div>
       </div>
       <bugNotes v-for="bugNote in bugNotes" :key="bugNote.id" :bugData="bugNote" />
