@@ -25,12 +25,4 @@ export default class NotesController {
       next(error);
     }
   }
-  // async getNotesByBugId(res, req, next) {
-  //   try {
-  //     let data = await NotesService.getNotesByBugId(req.params.id);
-  //     return res.send(data);
-  //   } catch (error) {
-  //     next(error);
-  //   }
-  // }
 }
