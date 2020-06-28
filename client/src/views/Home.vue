@@ -1,5 +1,5 @@
 <template>
-  <div class="home container">
+  <div class="home container-fluid">
     <div class="row">
       <div class="col-12">
         <h3>
@@ -133,6 +133,7 @@ table {
   border-radius: 15px !important;
   border-collapse: collapse !important;
   border: none !important;
+  margin: 10px;
 }
 table th,
 table td {
@@ -152,5 +153,11 @@ table tr:last-child td:last-child {
 }
 table tr:hover td {
   background-color: #ddd !important;
+}
+.home {
+  background-image: url(https://wallpaperplay.com/walls/full/0/6/2/231404.jpg);
+
+  background-size: fill;
+  height: 700px;
 }
 </style>
